@@ -1,54 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>tablas</title>
-   <style>
-       table, th, td {
-           border: 1px solid black;
-           border-collapse: collapse;
-           padding: 5px;
-       }
-   </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tablas</title>
 </head>
 <body>
-<h2> listado de postres </h2>
-   <table>
-       <thead>
+    <h2>Listado de postres</h2>
+    <table border="1">
         <tr>
-         <th>Nombre</th>
-         <th>Precio</th>
-         <th>Calorias</th>
-         <th>Ingredientes</th>
-        </tr>
-       </thead>
-       <tbody>
-        <tr>
-         <td>Tiramisu</td>
-         <td>$8.99</td>
-         <td>350 kcal</td>
-         <td>Café, mascarpone, bizcochos</td>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th colspan="2">Información Nutricional</th>
         </tr>
         <tr>
-         <td>Flan</td>
-         <td>$5.99</td>
-         <td>245 kcal</td>
-         <td>Huevos, leche, caramelo</td>
+            <th></th>
+            <th></th>
+            <th>Calorías</th>
+            <th>Ingredientes</th>
         </tr>
         <tr>
-         <td>Brownie</td>
-         <td>$6.99</td>
-         <td>420 kcal</td>
-         <td>Chocolate, nueces, harina</td>
+            <td>Pastel de chocolate</td>
+            <td>85.00</td>
+            <td>300 kcal</td>
+            <td>Chocolate, leche, harina, azúcar, huevo</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td>Helado de vainilla</td>
+            <td>18.00</td>
+            <td>150 kcal</td>
+            <td>Vainilla, leche, crema, azúcar</td>
         </tr>
         <tr>
-         <td>Cheesecake</td>
-         <td>$7.99</td>
-         <td>380 kcal</td>
-         <td>Queso crema, galletas, fresas</td>
+            <td>Strudel de Manzana</td>
+            <td>75.00</td>
+            <td>200 kcal</td>
+            <td>Manzana, harina, azúcar, huevo, canela</td>
         </tr>
-       </tbody>
-   </table>
+        <tr>
+            <td>Flan</td>
+            <td>45.00</td>
+            <td>120 kcal</td>
+            <td>Vainilla, Leche, azúcar, huevo</td>
+        </tr>
+        <tr>
+            <td>Pay de Limón</td>
+            <td>95.00</td>
+            <td>300 kcal</td>
+            <td>Limón, base de galleta, azúcar, huevo</td>
+        </tr>
+        <tr>
+            <td colspan="4">Fuente: cofepris</td>
+        </tr>
+    </table>
 </body>
 </html>
