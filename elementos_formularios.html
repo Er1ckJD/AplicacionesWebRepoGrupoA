@@ -1,8 +1,8 @@
 <html>
-<body>
 <head>
     <meta charset="utf-8">
 </head>
+<body>
 <!-- Campo de centrado de formulario -->
 <div style="width: 300px; margin: 0 auto; padding: 20px;">
     <h2 style="text-align: center;"> Ejemplo de elementos de formulario</h2>
@@ -49,6 +49,34 @@
                 <option value="co">Colombia</option>
                 <option value="br">Brasil</option>
             </select>
+        </p>
+        <!-- Campos de radio -->
+        <p>
+            <label>Género:</label>
+            <input type="radio" id="masculino" name="genero" value="masculino">
+            <label for="masculino">Masculino</label>
+            <input type="radio" id="femenino" name="genero" value="femenino">
+            <label for="femenino">Femenino</label>
+        </p>
+        <!-- Casillas de verificación -->
+        <p>
+            <label>Intereses:</label>
+            <input type="checkbox" id="deportes" name="intereses" value="deportes">
+            <label for="deportes">Deportes</label>
+            <input type="checkbox" id="artes" name="intereses" value="artes">
+            <label for="artes">Artes</label>
+            <input type="checkbox" id="lectura" name="intereses" value="lectura">
+            <label for="lectura">Lectura</label>
+        </p>
+        <!-- Campo de archivo -->
+        <p>
+            <label for="archivo">Subir archivo:</label>
+            <input type="file" id="archivo" name="file">
+        </p>
+        <!-- Area de texto -->
+        <p>
+            <label for="comentarios">Comentarios:<br></label>
+            <textarea id="comentarios" name="comenta" rows="5" cols="50">Este texto aparece...</textarea>
         </p>
     </form>
 </div>
