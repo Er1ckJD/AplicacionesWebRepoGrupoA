@@ -7,22 +7,27 @@
 <div style="width: 300px; margin: 0 auto; padding: 20px;">
     <h2 style="text-align: center;"> Ejemplo de elementos de formulario</h2>
     <form action="#" method="post" style="text-align: center;">
-        <!-- Campo de texto -->
-        <p>
-            <label for="id_nombre">Nombre:</label>
-            <input type="text" id="id_nombre" name="nombre">
-        </p>
-        <!-- Campo de contraseña -->
-        <p>
-            <label>Contraseña:
-                <input type="password" name="password">
-            </label>
-        </p>
-        <!-- Campo de correo electrónico -->
-        <p>
-            <label for="correo">Correo electrónico:</label>
-            <input type="email" id="correo" name="email">
-        </p>
+        <!-- Fieldset para datos de usuario -->
+        <fieldset>
+            <legend>Datos de Usuario</legend>
+            <!-- Campo de texto -->
+            <p>
+                <label for="id_nombre">Nombre:*</label>
+                <input type="text" id="id_nombre" name="nombre" required>
+            </p>
+            <!-- Campo de contraseña -->
+            <p>
+                <label>Contraseña:*
+                    <input type="password" name="password" required>
+                </label>
+            </p>
+            <!-- Campo de correo electrónico -->
+            <p>
+                <label for="correo">Correo electrónico:*</label>
+                <input type="email" id="correo" name="email" required>
+            </p>
+        </fieldset>
+
         <!-- Campo de número -->
         <p>
             <label for="numero">Edad:</label>
@@ -77,6 +82,11 @@
         <p>
             <label for="comentarios">Comentarios:<br></label>
             <textarea id="comentarios" name="comenta" rows="5" cols="50">Este texto aparece...</textarea>
+        </p>
+        <!-- Botones de envío y reset -->
+        <p>
+            <input type="submit" value="Enviar">
+            <input type="reset" value="Restablecer">
         </p>
     </form>
 </div>
