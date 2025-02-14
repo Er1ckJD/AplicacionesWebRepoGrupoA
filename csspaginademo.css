@@ -1,0 +1,131 @@
+/* Estilos generales y tipografía */
+body {
+    background: linear-gradient(to right, #f5f7fa, #e8ecf1);
+    font-family: 'Arial', sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    line-height: 1.6;
+    color: #2d3436;
+}
+
+/* Estilos para la imagen principal */
+img {
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 2rem 0;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Títulos */
+h1, h2, h3, h4 {
+    color: #2d3436;
+    margin-top: 2rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: #2c3e50;
+}
+
+h2 {
+    font-size: 2rem;
+    border-bottom: 2px solid #dfe6e9;
+    padding-bottom: 0.5rem;
+    color: #34495e;
+}
+
+h3 {
+    color: #2980b9;
+    font-size: 1.8rem;
+}
+
+h4 {
+    color: #16a085;
+    font-size: 1.4rem;
+}
+
+/* Enlaces */
+a {
+    color: #0984e3;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #74b9ff;
+}
+
+/* Listas */
+ul, ol {
+    background: white;
+    padding: 1.5rem 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin: 1rem 0;
+}
+
+li {
+    margin: 0.5rem 0;
+    padding: 0.3rem 0;
+}
+
+/* Párrafos */
+p {
+    margin: 1rem 0;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* Menú de navegación */
+#menu + ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Botón de regreso al menú */
+[href="#menu"] {
+    display: inline-block;
+    margin: 2rem 0;
+    padding: 0.5rem 1rem;
+    background: #0984e3;
+    color: white;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+[href="#menu"]:hover {
+    background: #74b9ff;
+}
+
+/* Estilos adicionales para mejorar la legibilidad */
+#menu + ul li {
+    transition: transform 0.2s ease;
+}
+
+#menu + ul li:hover {
+    transform: translateX(10px);
+}
+
+/* Estilos para los ingredientes */
+h4 + ul li {
+    color: #2c3e50;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+/* Estilos para los pasos de preparación */
+ol li {
+    color: #34495e;
+    padding: 0.5rem 0;
+}
