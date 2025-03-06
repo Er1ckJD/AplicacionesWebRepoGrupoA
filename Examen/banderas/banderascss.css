@@ -1,0 +1,49 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flags-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.flag {
+    display: flex;
+    width: 200px;
+    height: 100px;
+}
+
+.france .blue, .italy .green, .germany .black {
+    background-color: blue;
+    width: 33.33%;
+    height: 100%;
+}
+
+.france .white, .italy .white {
+    background-color: white;
+    width: 33.33%;
+    height: 100%;
+}
+
+.france .red, .italy .red, .germany .red {
+    background-color: red;
+    width: 33.33%;
+    height: 100%;
+}
+
+.germany .yellow {
+    background-color: yellow;
+    width: 33.33%;
+    height: 100%;
+}
+
+.germany .black {
+    background-color: black;
+    width: 33.33%;
+    height: 100%;
+}
