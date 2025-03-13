@@ -18,7 +18,7 @@ body, html {
     height: 100px;
 }
 
-.france .blue, .italy .green, .germany .black {
+.france .blue {
     background-color: blue;
     width: 33.33%;
     height: 100%;
@@ -36,14 +36,20 @@ body, html {
     height: 100%;
 }
 
-.germany .yellow {
-    background-color: yellow;
+.italy .green {
+    background-color: green;
     width: 33.33%;
     height: 100%;
 }
 
 .germany .black {
     background-color: black;
+    width: 33.33%;
+    height: 100%;
+}
+
+.germany .yellow {
+    background-color: yellow;
     width: 33.33%;
     height: 100%;
 }
