@@ -58,9 +58,16 @@ function  agregarfila(){
         nuevafila.innerHTML=`
         <td>${id}</td>
         <td>${nombre}</td>
+        
+        
+        
+        
+        
+        
         <td>${apellido}</td>
         <td>${correo}</td>
-        <td>${telefono}</td>
+        <td>$      
+    {telefono}</td>
         <td>${comentario}</td>      
         `;
         document.getElementById(formulario).reset();
