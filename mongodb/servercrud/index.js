@@ -18,7 +18,7 @@ app.post('/insertar', async(req,res)=>{
         await cliente.connect();
         const db=cliente.db(DataBaseGrupoA);
         const coleccion=db.coleccion('users');
-        await coleccion.insertOne({usuario:'pepe',password:'pepe123'});
+        await coleccion.insertOne({usuario:'pepepassword:'pepe'});
         req.send ("Documento agregado exitosamente");
     }finally{
         await cliente.close();
