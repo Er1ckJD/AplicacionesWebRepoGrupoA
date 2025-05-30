@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasarela de Pagos - PayPal Sandbox</title>
+</head>
+<body>
+<div class="payment-container">
+    <div class="header">
+        <h1>Pasarela de Pagos</h1>
+        <p>Procesamiento seguro con PayPal Sandbox</p>
+    </div>
+
+    <div class="product-info">
+        <div class="product-name">Producto Demo</div>
+        <div class="product-description">Descripción del producto o servicio</div>
+
+    </div>
+
+    <div class="payment-methods">
+        <h3>Selecciona tu método de pago:</h3>
+
+        <button class="payment-button paypal-button" onclick="processPayPalPayment()">
+            <span>🅿️</span>
+            Pagar con PayPal
+        </button>
+
+        <button class="payment-button card-button" onclick="processCardPayment()">
+            <span>💳</span>
+            Pagar con Tarjeta
+        </button>
+    </div>
+
+    <div id="status-message" class="status-message"></div>
+
+    <div class="sandbox-info">
+        <h4>🧪 Información del Sandbox</h4>
+        <p><strong>Entorno de prueba:</strong> Esta es una implementación de demostración</p>
+        <p><strong>Datos de prueba PayPal:</strong></p>
+        <div class="credentials">
+            Email: sb-buyer@example.com<br>
+            Password: testpassword123
+        </div>
+        <p><strong>Tarjeta de prueba:</strong></p>
+        <div class="credentials">
+            Número: 4111 1111 1111 1111<br>
+            Exp: 12/25 | CVV: 123
+        </div>
+    </div>
+</div>
+
+<!-- falta un sdk de paypal -->
+<script>
+    // Configuración de la pasarela
+    const PAYMENT_CONFIG = {
+        amount: '25.00',
+        currency: 'USD',
+        description: 'Producto Demo',
+        sandbox: true
+    };
+
+    // Función para mostrar mensajes de estado
+    function showMessage(message, type) {
+        const statusDiv = document.getElementById('status-message');
+        statusDiv.textContent = message;
+        statusDiv.className = `status-message ${type}`;
+        statusDiv.style.display = 'block';
+
+        if (type === 'success' || type === 'error') {
+            setTimeout(() => {
+                statusDiv.style.display = 'none';
+            }, 5000);
+        }
+    }
+
+    // Procesar pago con PayPal
+    function processPayPalPayment() {
+        showMessage('Inicializando PayPal...', 'loading');
+
+        // Crear botón de PayPal dinámicamente
+        const paypalContainer = document.createElement('div');
+        paypalContainer.id = 'paypal-button-container';
+
+        // Reemplazar el botón actual
+        const paypalButton = document.querySelector('.paypal-button');
+        paypalButton.parentNode.replaceChild(paypalContainer, paypalButton);
+
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: PAYMENT_CONFIG.amount,
+                            currency_code: PAYMENT_CONFIG.currency
+                        },
+                        description: PAYMENT_CONFIG.description
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                showMessage('Procesando pago...', 'loading');
+
+                return actions.order.capture().then(function(details) {
+                    console.log('Pago completado:', details);
+                    showMessage(
+                        `✅ ¡Pago exitoso! ID de transacción: ${details.id}`,
+                        'success'
+                    );
+
+                    // Aquí puedes agregar lógica adicional como redirección
+                    setTimeout(() => {
+                        alert('Pago procesado correctamente. Gracias por tu compra!');
+                    }, 2000);
+                });
+            },
+            onError: function(err) {
+                console.error('Error en el pago:', err);
+                showMessage('❌ Error al procesar el pago. Intenta nuevamente.', 'error');
+            },
+            onCancel: function(data) {
+                showMessage('⚠️ Pago cancelado por el usuario.', 'error');
+                // Restaurar botón original
+                location.reload();
+            }
+        }).render('#paypal-button-container');
+
+        document.getElementById('status-message').style.display = 'none';
+    }
+
+    // Simulación de pago con tarjeta
+    function processCardPayment() {
+        showMessage('Procesando pago con tarjeta...', 'loading');
+
+        // Simulación de procesamiento
+        setTimeout(() => {
+            // Simulación de éxito/error aleatorio
+            const success = Math.random() > 0.3; // 70% de éxito
+
+            if (success) {
+                const transactionId = 'TXN_' + Math.random().toString(36).substr(2, 9).toUpperCase();
+                showMessage(
+                    `✅ ¡Pago con tarjeta exitoso! ID: ${transactionId}`,
+                    'success'
+                );
+
+                setTimeout(() => {
+                    alert('Pago procesado correctamente. Gracias por tu compra!');
+                }, 2000);
+            } else {
+                showMessage('❌ Error al procesar la tarjeta. Verifica tus datos.', 'error');
+            }
+        }, 2000);
+    }
+
+    // Función para simular webhook (en producción esto sería server-side)
+    function simulateWebhook(transactionData) {
+        console.log('Webhook simulado:', transactionData);
+
+        // Aquí enviarías los datos a tu servidor
+        // fetch('/webhook/payment', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(transactionData)
+        // });
+    }
+
+    // Log de configuración para debugging
+    console.log('Pasarela de pagos inicializada:', PAYMENT_CONFIG);
+    console.log('Modo Sandbox:', PAYMENT_CONFIG.sandbox ? 'Activado' : 'Desactivado');
+</script>
+</body>
+</html>

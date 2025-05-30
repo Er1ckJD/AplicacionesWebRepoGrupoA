@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended:true}));
 
 const{MongoClient} = require('mongodb');
 
-const uri = 'mongodb+srv://202260138:aMigoS6A@baloo.1nlyg.mongodb.net/?retryWrites=true&w=majority&appName=Baloo'
+const uri = 'mongodb+srv://201020117:@EricK2016@Erick.1nlyg.mongodb.net/?retryWrites=true&w=majority&appName=Erick';
 const cliente = new MongoClient(uri);
 //rutahome
 app.get('/home',(req,res)=>{
