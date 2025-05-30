@@ -1,0 +1,62 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.mensaje {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 20px;
+    align-items: center;
+}
+
+.palabra {
+    padding: 8px 12px;
+    font-size: 18px;
+    position: relative;
+    background: white;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    transform: rotate(-1deg);
+}
+
+.destacado {
+    background: #ffeb3b;
+    transform: rotate(1deg);
+}
+
+.numero {
+    background: #4db6ac;
+    color: white;
+    transform: rotate(-2deg);
+}
+
+.verde {
+    background: #009688;
+    color: white;
+}
+
+.palabra::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(0,0,0,0.1);
+}
+
+@media (max-width: 600px) {
+    .mensaje {
+        padding: 10px;
+    }
+    .palabra {
+        font-size: 16px;
+        padding: 6px 10px;
+    }
+}
