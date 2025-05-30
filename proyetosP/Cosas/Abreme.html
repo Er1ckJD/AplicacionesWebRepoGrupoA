@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tarjeta Sorpresa</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+            font-family: 'Arial', sans-serif;
+            perspective: 1500px;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .card-container {
+            position: relative;
+            width: 280px;
+            height: 380px;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+            touch-action: manipulation;
+        }
+
+        @media (min-width: 768px) {
+            .card-container {
+                width: 300px;
+                height: 400px;
+            }
+        }
+
+        .card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+            transform-origin: left;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card.open {
+            transform: rotateY(-180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .card-front {
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            z-index: 2;
+        }
+
+        .card-back {
+            background: white;
+            transform: rotateY(180deg);
+            z-index: 1;
+        }
+
+        .envelope {
+            position: absolute;
+            width: 310px;
+            height: 410px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+            z-index: -1;
+            transform: translateZ(-10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .envelope:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, transparent 50%, #e0e0e0 50%, #e0e0e0 100%);
+            border-radius: 10px;
+        }
+
+        .card-decoration {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+        }
+
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 60px;
+            background-color: #5d9cec;
+            border-radius: 50%;
+            top: 50px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .balloon:before {
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 80px;
+            background: #a0a0a0;
+            bottom: -78px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .balloon:nth-child(2) {
+            background-color: #ed5565;
+            left: 60px;
+            top: 70px;
+            animation-delay: 0.5s;
+        }
+
+        .balloon:nth-child(3) {
+            background-color: #ffce54;
+            right: 60px;
+            top: 60px;
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .message {
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .front-message {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .big-text {
+            font-size: 72px;
+            font-weight: bold;
+            color: #ff5252;
+            margin: 20px 0;
+            opacity: 0;
+            transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
+            transform: scale(0.5);
+        }
+
+        .card.open .big-text {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+        }
+
+        /* Instrucción */
+        .instruction {
+            position: absolute;
+            bottom: 20px;
+            font-size: 14px;
+            color: #666;
+            width: 100%;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        @media (max-width: 480px) {
+            .card-container {
+                width: 260px;
+                height: 350px;
+            }
+
+            .envelope {
+                width: 270px;
+                height: 360px;
+            }
+
+            .big-text {
+                font-size: 64px;
+            }
+
+            .front-message {
+                font-size: 22px;
+            }
+
+            .message {
+                font-size: 16px;
+            }
+
+            .instruction {
+                font-size: 12px;
+            }
+        }
+
+        /* Agregamos un brillo indicando que se puede abrir */
+        .shine {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 10px;
+            background: linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0) 0%,
+                    rgba(255,255,255,0.4) 48%,
+                    rgba(255,255,255,0) 100%
+            );
+            background-size: 200% 200%;
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                background-position: -100% -100%;
+            }
+            100% {
+                background-position: 200% 200%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="envelope"></div>
+<div class="card-container">
+    <div class="card">
+        <div class="card-front">
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+            <div class="front-message">¡Haz clic para abrir!</div>
+            <div class="shine"></div>
+        </div>
+        <div class="card-back">
+            <div class="big-text">CTM</div>
+            <div class="message">¡Sorpresa! Espero que te haya gustado esta tarjeta especial.</div>
+        </div>
+    </div>
+</div>
+<div class="instruction">Toca la tarjeta para abrirla</div>
+
+<script>
+    // Función para soportar tanto clics como toques
+    function setupInteraction() {
+        const card = document.querySelector('.card');
+        const cardContainer = document.querySelector('.card-container');
+
+        // Función para abrir la tarjeta
+        function openCard() {
+            card.classList.toggle('open');
+
+            if (card.classList.contains('open')) {
+                createConfetti();
+            }
+        }
+
+        // Eventos para PC
+        cardContainer.addEventListener('click', function(e) {
+            e.preventDefault();
+            openCard();
+        });
+
+        // Eventos para dispositivos móviles
+        cardContainer.addEventListener('touchstart', function(e) {
+            // Prevenir comportamiento de scroll y zoom
+            e.preventDefault();
+        }, { passive: false });
+
+        cardContainer.addEventListener('touchend', function(e) {
+            // Prevenir comportamiento predeterminado
+            e.preventDefault();
+            openCard();
+        }, { passive: false });
+    }
+
+    // Llamar a la función cuando el DOM esté cargado
+    document.addEventListener('DOMContentLoaded', setupInteraction);
+
+    function createConfetti() {
+        const confettiCount = 100;
+        const container = document.querySelector('body');
+
+        for (let i = 0; i < confettiCount; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+
+            // Color aleatorio
+            const colors = ['#f94144', '#f3722c', '#f8961e', '#f9c74f', '#90be6d', '#43aa8b', '#577590'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.backgroundColor = randomColor;
+
+            // Posición y tamaño aleatorios
+            const size = Math.random() * 10 + 5;
+            confetti.style.width = `${size}px`;
+            confetti.style.height = `${size}px`;
+
+            // Posición inicial (centrada en la tarjeta)
+            const cardRect = document.querySelector('.card').getBoundingClientRect();
+            confetti.style.left = `${cardRect.left + cardRect.width/2}px`;
+            confetti.style.top = `${cardRect.top + cardRect.height/2}px`;
+
+            // Opacidad y rotación
+            confetti.style.opacity = '1';
+            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+            // Agregar al DOM
+            container.appendChild(confetti);
+
+            // Animación
+            const animation = confetti.animate([
+                {
+                    transform: `translate(0, 0) rotate(${Math.random() * 360}deg)`,
+                    opacity: 1
+                },
+                {
+                    transform: `translate(${(Math.random() - 0.5) * window.innerWidth/2}px, ${Math.random() * window.innerHeight/2}px) rotate(${Math.random() * 360}deg)`,
+                    opacity: 0
+                }
+            ], {
+                duration: Math.random() * 3000 + 2000,
+                easing: 'cubic-bezier(0, .9, .57, 1)',
+                delay: Math.random() * 500
+            });
+
+            animation.onfinish = function() {
+                confetti.remove();
+            };
+        }
+    }
+</script>
+</body>
+</html>

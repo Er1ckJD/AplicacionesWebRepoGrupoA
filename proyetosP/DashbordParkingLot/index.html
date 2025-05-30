@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Estacionamiento - Universidad Cristóbal Colón</title>
+    <!-- Enlace al archivo CSS externo -->
+    <link rel="stylesheet" href="index.css.css">
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        <div class="logo-text">
+            UCC Parking
+            <small>Universidad Cristóbal Colón</small>
+        </div>
+    </div>
+
+    <nav>
+        <a href="#" class="nav-item active">Dashboard</a>
+        <a href="#" class="nav-item">Reportes</a>
+        <a href="#" class="nav-item">Usuarios</a>
+        <a href="#" class="nav-item">Configuración</a>
+    </nav>
+
+    <div class="user-menu">
+        <div class="alerts-icon">
+            <i class="fas fa-bell"></i>
+            <span class="alerts-count">5</span>
+        </div>
+        <span>Admin</span>
+    </div>
+</header>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Dashboard de Estacionamiento</h1>
+        <div class="last-update">
+            <i class="fas fa-sync-alt"></i> Última actualización: 10/05/2025 12:45 PM
+        </div>
+    </div>
+
+    <div class="campus-selector">
+        <button class="campus-btn active">Campus Torrente</button>
+        <button class="campus-btn">Campus Calasanz</button>
+        <button class="campus-btn">Centro de Posgrados</button>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card primary">
+            <div class="stat-title">Espacios Ocupados</div>
+            <div class="stat-value">145 / 200</div>
+            <div class="stat-info">72% de ocupación</div>
+        </div>
+
+        <div class="stat-card success">
+            <div class="stat-title">Estudiantes</div>
+            <div class="stat-value">105</div>
+            <div class="stat-info">72% del estacionamiento</div>
+        </div>
+
+        <div class="stat-card accent">
+            <div class="stat-title">Docentes</div>
+            <div class="stat-value">32</div>
+            <div class="stat-info">22% del estacionamiento</div>
+        </div>
+
+        <div class="stat-card warning">
+            <div class="stat-title">Visitantes</div>
+            <div class="stat-value">8</div>
+            <div class="stat-info">6% del estacionamiento</div>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="main-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Estado General del Estacionamiento</h2>
+                    <div>
+                        <button class="btn btn-primary btn-small">
+                            <i class="fas fa-chart-bar"></i>
+                            Ver Gráficos
+                        </button>
+                    </div>
+                </div>
+
+                <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr); margin-top: 1rem;">
+                    <div class="stat-card success">
+                        <div class="stat-title">Espacios Disponibles</div>
+                        <div class="stat-value">55</div>
+                        <div class="stat-info">28% del total</div>
+                    </div>
+
+                    <div class="stat-card warning">
+                        <div class="stat-title">Tiempo Promedio</div>
+                        <div class="stat-value">3.7 hrs</div>
+                        <div class="stat-info">estancia por vehículo</div>
+                    </div>
+
+                    <div class="stat-card danger">
+                        <div class="stat-title">Área Crítica</div>
+                        <div class="stat-value">Área A</div>
+                        <div class="stat-info">95% ocupación</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <div class="card-header" style="margin-top: 0.5rem;">
+                        <h3 class="card-title" style="font-size: 1rem;">Distribución de Ocupación por Áreas</h3>
+                    </div>
+
+                    <div class="chart-container">
+                        <!-- Placeholder para gráfico de ocupación por áreas -->
+                        <i class="fas fa-chart-pie" style="font-size: 3rem; color: var(--primary-color); opacity: 0.5;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Vehículos Actuales</h2>
+                    <div>
+                        <button class="btn btn-primary btn-small">
+                            <i class="fas fa-plus"></i>
+                            Registrar Entrada
+                        </button>
+                        <button class="btn btn-outline btn-small">
+                            <i class="fas fa-filter"></i>
+                            Filtros
+                        </button>
+                    </div>
+                </div>
+
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Buscar por usuario, ubicación o tipo...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="vehicles-table">
+                        <thead>
+                        <tr>
+                            <th>Matricula Estudiante</th>
+                            <th>Tipo</th>
+                            <th>Entrada</th>
+                            <th>Ubicación</th>
+                            <th>Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>EST20210358</td>
+                            <td><span class="vehicles-type student">Estudiante</span></td>
+                            <td>10:15 AM</td>
+                            <td>A3</td>
+                            <td>
+                                <button class="btn btn-small btn-outline">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    Salida
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>DOC20180047</td>
+                            <td><span class="vehicles-type faculty">Docente</span></td>
+                            <td>08:30 AM</td>
+                            <td>B2</td>
+                            <td>
+                                <button class="btn btn-small btn-outline">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    Salida
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>EST20220192</td>
+                            <td><span class="vehicles-type student">Estudiante</span></td>
+                            <td>11:20 AM</td>
+                            <td>C3</td>
+                            <td>
+                                <button class="btn btn-small btn-outline">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    Salida
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ADM20150023</td>
+                            <td><span class="vehicles-type staff">Personal</span></td>
+                            <td>08:10 AM</td>
+                            <td>B7</td>
+                            <td>
+                                <button class="btn btn-small btn-outline">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    Salida
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>VIS20250510</td>
+                            <td><span class="vehicles-type visitor">Visitante</span></td>
+                            <td>10:50 AM</td>
+                            <td>D5</td>
+                            <td>
+                                <button class="btn btn-small btn-outline">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    Salida
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-footer">
+                    <div>Mostrando 5 de 145 vehículos</div>
+                    <div class="pagination">
+                        <button class="pagination-btn"><i class="fas fa-chevron-left"></i></button>
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <button class="pagination-btn">...</button>
+                        <button class="pagination-btn">29</button>
+                        <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Actividad Reciente</h2>
+                    <button class="btn btn-outline btn-small">
+                        Ver Todo
+                    </button>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="vehicles-table">
+                        <thead>
+                        <tr>
+                            <th>Tiempo</th>
+                            <th>Evento</th>
+                            <th>Usuario</th>
+                            <th>Tipo</th>
+                            <th>Ubicación</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>12:35 PM</td>
+                            <td>Entrada</td>
+                            <td>EST20230159</td>
+                            <td><span class="vehicles-type student">Estudiante</span></td>
+                            <td>A7</td>
+                        </tr>
+                        <tr>
+                            <td>12:28 PM</td>
+                            <td>Salida</td>
+                            <td>VIS20250083</td>
+                            <td><span class="vehicles-type visitor">Visitante</span></td>
+                            <td>D2</td>
+                        </tr>
+                        <tr>
+                            <td>12:15 PM</td>
+                            <td>Entrada</td>
+                            <td>DOC20210039</td>
+                            <td><span class="vehicles-type faculty">Docente</span></td>
+                            <td>B3</td>
+                        </tr>
+                        <tr>
+                            <td>12:02 PM</td>
+                            <td>Salida</td>
+                            <td>EST20240147</td>
+                            <td><span class="vehicles-type student">Estudiante</span></td>
+                            <td>C9</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Estadísticas de Ocupación</h2>
+                </div>
+
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="daily">Diario</button>
+                    <button class="tab-button" data-tab="weekly">Semanal</button>
+                    <button class="tab-button" data-tab="monthly">Mensual</button>
+                </div>
+
+                <div class="tab-content active" id="daily-content">
+                    <div class="chart-container">
+                        <!-- Placeholder for chart - would be implemented with JavaScript -->
+                        <i class="fas fa-chart-line" style="font-size: 3rem; color: var(--primary-color); opacity: 0.5;"></i>
+                    </div>
+
+                    <div>
+                        <div style="font-weight: 500; margin-bottom: 0.5rem;">Horas Pico</div>
+                        <div>09:00 - 10:00 (95% ocupación)</div>
+                        <div>14:00 - 15:00 (85% ocupación)</div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="weekly-content">
+                    <div class="chart-container">
+                        <!-- Placeholder for chart -->
+                        <i class="fas fa-chart-bar" style="font-size: 3rem; color: var(--primary-color); opacity: 0.5;"></i>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <div style="font-weight: 500; margin-bottom: 0.5rem;">Día Más Ocupado</div>
+                        <div>Lunes (96% ocupación máxima)</div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="monthly-content">
+                    <div class="chart-container">
+                        <!-- Placeholder for chart -->
+                        <i class="fas fa-chart-area" style="font-size: 3rem; color: var(--primary-color); opacity: 0.5;"></i>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <div style="font-weight: 500; margin-bottom: 0.5rem;">Tendencia Mensual</div>
+                        <div>12% incremento respecto al mes anterior</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Alertas</h2>
+                </div>
+
+                <div class="alerts-container">
+                    <div class="alert alert-critical">
+                        <div class="alert-header">
+                            <span class="alert-title">Ocupación Crítica</span>
+                            <span class="alert-time">15m atrás</span>
+                        </div>
+                        <div class="alert-message">
+                            El estacionamiento de Área A está al 95% de su capacidad.
+                        </div>
+                    </div>
+
+                    <div class="alert alert-warning">
+                        <div class="alert-header">
+                            <span class="alert-title">Mantenimiento Programado</span>
+                            <span class="alert-time">1h atrás</span>
+                        </div>
+                        <div class="alert-message">
+                            El área D estará cerrada el 15/05 para mantenimiento.
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <div class="alert-header">
+                            <span class="alert-title">Evento Campus</span>
+                            <span class="alert-time">3h atrás</span>
+                        </div>
+                        <div class="alert-message">
+                            Feria de Educación programada para el 12/05. Se esperan 200 visitantes adicionales.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Reportes Rápidos</h2>
+                </div>
+
+                <div class="reports-panel">
+                    <div class="report-item">
+                        <div class="report-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="report-info">
+                            <div class="report-title">Reporte de Ocupación</div>
+                            <div class="report-desc">Estadísticas detalladas de uso del estacionamiento</div>
+                        </div>
+                        <button class="btn btn-small btn-outline">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+
+                    <div class="report-item">
+                        <div class="report-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="report-info">
+                            <div class="report-title">Reporte de Usuarios</div>
+                            <div class="report-desc">Frecuencia de uso por tipo de usuario</div>
+                        </div>
+                        <button class="btn btn-small btn-outline">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+
+                    <div class="report-item">
+                        <div class="report-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="report-info">
+                            <div class="report-title">Reporte de Incidencias</div>
+                            <div class="report-desc">Registro de incidentes y resoluciones</div>
+                        </div>
+                        <button class="btn btn-small btn-outline">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 Universidad Cristóbal Colón - Sistema de Gestión de Estacionamiento | Desarrollado por el Departamento de Sistemas</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

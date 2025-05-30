@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Empresa - UIkit Demo</title>
+
+    <link rel="stylesheet" href="public/css/uikit-core.css">
+    <script src="public/js/uikit-core.js"></script>
+
+    <style>
+        .hero-section {
+            background: linear-gradient(to right, #1e87f0, #0e6ecd);
+            padding: 80px 0;
+        }
+        .feature-card {
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="uk-navbar-container" uk-navbar>
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav">
+            <li class="uk-active"><a href="#">Mi Empresa</a></li>
+        </ul>
+    </div>
+    <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav uk-visible@m">
+            <li class="uk-active"><a href="#">Inicio</a></li>
+            <li><a href="#">Servicios</a></li>
+            <li><a href="#">Sobre Nosotros</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+        <a href="#" class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon uk-toggle="target: #offcanvas-nav"></a>
+    </div>
+</nav>
+
+<!-- Off-canvas Menu para móviles -->
+<div id="offcanvas-nav" uk-offcanvas="overlay: true">
+    <div class="uk-offcanvas-bar">
+        <button class="uk-offcanvas-close" type="button" uk-close></button>
+        <ul class="uk-nav uk-nav-default">
+            <li class="uk-active"><a href="#">Inicio</a></li>
+            <li><a href="#">Servicios</a></li>
+            <li><a href="#">Sobre Nosotros</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<section class="hero-section uk-light">
+    <div class="uk-container">
+        <div class="uk-grid-large uk-child-width-1-2@m uk-flex-middle" uk-grid>
+            <div>
+                <h1 class="uk-heading-medium">Soluciones innovadoras para tu negocio</h1>
+                <p class="uk-text-lead">Impulsamos tu empresa con tecnología de vanguardia y estrategias personalizadas.</p>
+                <a href="#" class="uk-button uk-button-primary uk-button-large uk-margin-small-right">Nuestros servicios</a>
+                <a href="#" class="uk-button uk-button-default uk-button-large">Contáctanos</a>
+            </div>
+            <div class="uk-flex uk-flex-center">
+                <img src="/api/placeholder/600/400" alt="Imagen representativa" width="600" height="400" class="uk-box-shadow-large">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Breadcrumbs -->
+<div class="uk-container uk-margin-top">
+    <ul class="uk-breadcrumb">
+        <li><a href="#">Inicio</a></li>
+        <li><span>Servicios</span></li>
+    </ul>
+</div>
+
+<!-- Features Section -->
+<section class="uk-section uk-section-muted">
+    <div class="uk-container">
+        <h2 class="uk-heading-line uk-text-center"><span>Nuestros Servicios</span></h2>
+
+        <div class="uk-child-width-1-3@m uk-grid-match uk-margin-medium-top" uk-grid>
+            <!-- Feature Card 1 -->
+            <div>
+                <div class="uk-card uk-card-default uk-card-hover uk-card-body feature-card">
+                    <div class="uk-card-media-top uk-text-center">
+                        <span uk-icon="icon: desktop; ratio: 3" class="uk-text-primary"></span>
+                    </div>
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title uk-text-center">Desarrollo Web</h3>
+                        <p>Creamos sitios web modernos, responsivos y optimizados para buscadores.</p>
+                        <div class="uk-text-center">
+                            <a href="#" class="uk-button uk-button-text">Leer más</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Card 2 -->
+            <div>
+                <div class="uk-card uk-card-default uk-card-hover uk-card-body feature-card">
+                    <div class="uk-card-media-top uk-text-center">
+                        <span uk-icon="icon: future; ratio: 3" class="uk-text-primary"></span>
+                    </div>
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title uk-text-center">Inteligencia Artificial</h3>
+                        <p>Implementamos soluciones de IA para automatizar y optimizar procesos de negocio.</p>
+                        <div class="uk-text-center">
+                            <a href="#" class="uk-button uk-button-text">Leer más</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Card 3 -->
+            <div>
+                <div class="uk-card uk-card-default uk-card-hover uk-card-body feature-card">
+                    <div class="uk-card-media-top uk-text-center">
+                        <span uk-icon="icon: cloud-upload; ratio: 3" class="uk-text-primary"></span>
+                    </div>
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title uk-text-center">Servicios Cloud</h3>
+                        <p>Migración y gestión de infraestructura en la nube con seguridad garantizada.</p>
+                        <div class="uk-text-center">
+                            <a href="#" class="uk-button uk-button-text">Leer más</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="uk-section uk-section-primary uk-light">
+    <div class="uk-container uk-text-center">
+        <h2>¿Listo para llevar tu negocio al siguiente nivel?</h2>
+        <p class="uk-text-lead">Contáctanos hoy para una consulta gratuita</p>
+        <button class="uk-button uk-button-default uk-button-large uk-margin-top">Solicitar información</button>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="uk-section">
+    <div class="uk-container">
+        <h2 class="uk-heading-line uk-text-center"><span>Testimonios</span></h2>
+
+        <div uk-slider="center: true">
+            <div class="uk-position-relative">
+                <div class="uk-slider-container uk-light">
+                    <ul class="uk-slider-items uk-child-width-1-2@s uk-child-width-1-3@m uk-grid uk-grid-match" uk-height-match="target: > li > div > .uk-card">
+                        <!-- Testimonio 1 -->
+                        <li>
+                            <div class="uk-margin-medium-top uk-margin-medium-bottom">
+                                <div class="uk-card uk-card-secondary uk-card-body uk-box-shadow-medium">
+                                    <div class="uk-text-center uk-margin-bottom">
+                                        <span uk-icon="icon: quote-right; ratio: 3"></span>
+                                    </div>
+                                    <p>La implementación del sistema desarrollado por Mi Empresa ha incrementado nuestra productividad en un 40%.</p>
+                                    <div class="uk-text-meta uk-text-right">
+                                        <strong>Carlos Ramírez</strong><br>Director de Operaciones
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Testimonio 2 -->
+                        <li>
+                            <div class="uk-margin-medium-top uk-margin-medium-bottom">
+                                <div class="uk-card uk-card-secondary uk-card-body uk-box-shadow-medium">
+                                    <div class="uk-text-center uk-margin-bottom">
+                                        <span uk-icon="icon: quote-right; ratio: 3"></span>
+                                    </div>
+                                    <p>El equipo entendió perfectamente nuestras necesidades y entregó una solución que superó nuestras expectativas.</p>
+                                    <div class="uk-text-meta uk-text-right">
+                                        <strong>Laura Gómez</strong><br>CEO, Innovatech
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Testimonio 3 -->
+                        <li>
+                            <div class="uk-margin-medium-top uk-margin-medium-bottom">
+                                <div class="uk-card uk-card-secondary uk-card-body uk-box-shadow-medium">
+                                    <div class="uk-text-center uk-margin-bottom">
+                                        <span uk-icon="icon: quote-right; ratio: 3"></span>
+                                    </div>
+                                    <p>La migración a la nube fue impecable, sin tiempo de inactividad y con mejoras significativas en rendimiento.</p>
+                                    <div class="uk-text-meta uk-text-right">
+                                        <strong>Miguel Sánchez</strong><br>Director de TI
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="uk-hidden@s uk-light">
+                    <a class="uk-position-center-left uk-position-small" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                    <a class="uk-position-center-right uk-position-small" href="#" uk-slidenav-next uk-slider-item="next"></a>
+                </div>
+
+                <div class="uk-visible@s">
+                    <a class="uk-position-center-left-out uk-position-small" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                    <a class="uk-position-center-right-out uk-position-small" href="#" uk-slidenav-next uk-slider-item="next"></a>
+                </div>
+            </div>
+
+            <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+        </div>
+    </div>
+</section>
+
+<!-- Formulario de contacto -->
+<section class="uk-section uk-section-muted">
+    <div class="uk-container">
+        <div class="uk-grid-large" uk-grid>
+            <div class="uk-width-1-2@m">
+                <h2>Contáctanos</h2>
+                <p class="uk-text-lead">Estamos aquí para ayudarte. Envíanos un mensaje y te responderemos lo antes posible.</p>
+
+                <div class="uk-margin-medium-top">
+                    <ul class="uk-list uk-list-divider">
+                        <li>
+                            <div class="uk-grid-small" uk-grid>
+                                <div class="uk-width-auto">
+                                    <span uk-icon="icon: receiver; ratio: 1.2"></span>
+                                </div>
+                                <div class="uk-width-expand">
+                                    <h4 class="uk-margin-remove">Teléfono</h4>
+                                    <p class="uk-margin-remove">+34 912 345 678</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="uk-grid-small" uk-grid>
+                                <div class="uk-width-auto">
+                                    <span uk-icon="icon: mail; ratio: 1.2"></span>
+                                </div>
+                                <div class="uk-width-expand">
+                                    <h4 class="uk-margin-remove">Email</h4>
+                                    <p class="uk-margin-remove">info@miempresa.com</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="uk-grid-small" uk-grid>
+                                <div class="uk-width-auto">
+                                    <span uk-icon="icon: location; ratio: 1.2"></span>
+                                </div>
+                                <div class="uk-width-expand">
+                                    <h4 class="uk-margin-remove">Dirección</h4>
+                                    <p class="uk-margin-remove">Calle Ejemplo 123, 28001, Madrid</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="uk-width-1-2@m">
+                <div class="uk-card uk-card-default uk-card-body uk-box-shadow-medium">
+                    <form>
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="name">Nombre completo</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="name" type="text" placeholder="Tu nombre" required>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="email">Correo electrónico</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="email" type="email" placeholder="tu@email.com" required>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="subject">Asunto</label>
+                            <div class="uk-form-controls">
+                                <select class="uk-select" id="subject">
+                                    <option>Solicitud de información</option>
+                                    <option>Presupuesto</option>
+                                    <option>Soporte técnico</option>
+                                    <option>Otros</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="message">Mensaje</label>
+                            <div class="uk-form-controls">
+                                <textarea class="uk-textarea" id="message" rows="5" placeholder="Escribe tu mensaje aquí" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin uk-text-right">
+                            <button class="uk-button uk-button-primary" type="submit">Enviar mensaje</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="uk-section uk-section-secondary uk-padding-small">
+    <div class="uk-container">
+        <div class="uk-grid-match uk-child-width-1-4@m" uk-grid>
+            <div>
+                <h4>Mi Empresa</h4>
+                <p>Soluciones innovadoras para empresas de todos los tamaños. Tecnología de vanguardia al servicio de tu negocio.</p>
+            </div>
+
+            <div>
+                <h4>Enlaces rápidos</h4>
+                <ul class="uk-list uk-list-hyphen">
+                    <li><a href="#" class="uk-link-muted">Inicio</a></li>
+                    <li><a href="#" class="uk-link-muted">Servicios</a></li>
+                    <li><a href="#" class="uk-link-muted">Sobre nosotros</a></li>
+                    <li><a href="#" class="uk-link-muted">Blog</a></li>
+                    <li><a href="#" class="uk-link-muted">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Servicios</h4>
+                <ul class="uk-list uk-list-hyphen">
+                    <li><a href="#" class="uk-link-muted">Desarrollo Web</a></li>
+                    <li><a href="#" class="uk-link-muted">Inteligencia Artificial</a></li>
+                    <li><a href="#" class="uk-link-muted">Servicios Cloud</a></li>
+                    <li><a href="#" class="uk-link-muted">Consultoría IT</a></li>
+                    <li><a href="#" class="uk-link-muted">Ciberseguridad</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Síguenos</h4>
+                <div class="uk-flex-center uk-grid-small" uk-grid>
+                    <div>
+                        <a href="#" class="uk-icon-button" uk-icon="twitter"></a>
+                    </div>
+                    <div>
+                        <a href="#" class="uk-icon-button" uk-icon="facebook"></a>
+                    </div>
+                    <div>
+                        <a href="#" class="uk-icon-button" uk-icon="instagram"></a>
+                    </div>
+                    <div>
+                        <a href="#" class="uk-icon-button" uk-icon="linkedin"></a>
+                    </div>
+                </div>
+
+                <div class="uk-margin-top">
+                    <h4>Newsletter</h4>
+                    <form class="uk-grid-small" uk-grid>
+                        <div class="uk-width-expand">
+                            <input class="uk-input" type="email" placeholder="tu@email.com">
+                        </div>
+                        <div class="uk-width-auto">
+                            <button class="uk-button uk-button-primary">Suscribir</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <hr class="uk-margin-medium">
+
+        <div class="uk-text-center uk-text-small">
+            <p>&copy; 2025 Mi Empresa. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

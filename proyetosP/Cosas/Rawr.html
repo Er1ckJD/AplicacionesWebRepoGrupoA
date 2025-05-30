@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinosaurio Bonito</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e8f4ff;
+            overflow: hidden;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .scene {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ground {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            background-color: #7cbe7b;
+            border-top: 5px solid #5a9e59;
+        }
+
+        .cloud {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.9;
+        }
+
+        .cloud-1 {
+            width: 80px;
+            height: 40px;
+            top: 100px;
+            left: 15%;
+            animation: float-cloud 20s linear infinite;
+        }
+
+        .cloud-2 {
+            width: 120px;
+            height: 60px;
+            top: 150px;
+            left: 60%;
+            animation: float-cloud 30s linear infinite;
+        }
+
+        .sun {
+            position: absolute;
+            top: 80px;
+            right: 100px;
+            width: 80px;
+            height: 80px;
+            background-color: #ffdb58;
+            border-radius: 50%;
+            box-shadow: 0 0 30px #ffdb58;
+            animation: sun-pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes float-cloud {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(100vw + 200px));
+            }
+        }
+
+        @keyframes sun-pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .dinosaur {
+            position: relative;
+            z-index: 10;
+            animation: dino-float 3s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        @keyframes dino-float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Partes del dinosaurio */
+        .body {
+            width: 180px;
+            height: 140px;
+            background-color: #6ecf42;
+            border-radius: 80px 80px 60px 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .neck {
+            width: 40px;
+            height: 90px;
+            background-color: #6ecf42;
+            position: absolute;
+            top: -80px;
+            left: 110px;
+            border-radius: 20px 20px 0 0;
+            transform: rotate(10deg);
+            z-index: 0;
+        }
+
+        .head {
+            width: 90px;
+            height: 70px;
+            background-color: #6ecf42;
+            position: absolute;
+            top: -110px;
+            left: 130px;
+            border-radius: 40px 50px 30px 20px;
+            z-index: 2;
+            animation: head-move 4s ease-in-out infinite;
+        }
+
+        @keyframes head-move {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(5deg);
+            }
+            75% {
+                transform: rotate(-5deg);
+            }
+        }
+
+        .eye {
+            width: 25px;
+            height: 25px;
+            background-color: white;
+            position: absolute;
+            top: 15px;
+            left: 50px;
+            border-radius: 50%;
+            z-index: 3;
+        }
+
+        .pupil {
+            width: 12px;
+            height: 12px;
+            background-color: black;
+            position: absolute;
+            top: 5px;
+            left: 8px;
+            border-radius: 50%;
+            animation: blink 4s infinite;
+        }
+
+        @keyframes blink {
+            0%, 97%, 100% {
+                transform: scaleY(1);
+            }
+            98%, 99% {
+                transform: scaleY(0.1);
+            }
+        }
+
+        .mouth {
+            width: 45px;
+            height: 20px;
+            background-color: #ff9999;
+            position: absolute;
+            bottom: 12px;
+            left: 60px;
+            border-radius: 0 20px 20px 20px;
+            z-index: 3;
+            transition: all 0.3s;
+        }
+
+        .nostrils {
+            width: 10px;
+            height: 5px;
+            background-color: #5aa53a;
+            position: absolute;
+            top: 30px;
+            left: 85px;
+            border-radius: 50%;
+        }
+
+        .tail {
+            width: 120px;
+            height: 30px;
+            background-color: #6ecf42;
+            position: absolute;
+            bottom: 40px;
+            left: -90px;
+            border-radius: 15px 0 0 15px;
+            transform-origin: right center;
+            animation: tail-wag 3s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes tail-wag {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(10deg);
+            }
+            75% {
+                transform: rotate(-10deg);
+            }
+        }
+
+        .leg {
+            width: 30px;
+            height: 60px;
+            background-color: #6ecf42;
+            position: absolute;
+            bottom: -55px;
+            border-radius: 15px 15px 10px 10px;
+        }
+
+        .leg-front {
+            left: 120px;
+            animation: leg-front-move 3s ease-in-out infinite;
+        }
+
+        .leg-back {
+            left: 30px;
+            animation: leg-back-move 3s ease-in-out infinite;
+        }
+
+        @keyframes leg-front-move {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(5deg);
+            }
+        }
+
+        @keyframes leg-back-move {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(-5deg);
+            }
+        }
+
+        .arm {
+            width: 20px;
+            height: 40px;
+            background-color: #6ecf42;
+            position: absolute;
+            top: 40px;
+            left: 120px;
+            border-radius: 10px;
+            transform-origin: top center;
+            animation: arm-move 4s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes arm-move {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(10deg);
+            }
+            75% {
+                transform: rotate(-10deg);
+            }
+        }
+
+        .spikes {
+            position: absolute;
+            top: -10px;
+            left: 30px;
+            z-index: 0;
+        }
+
+        .spike {
+            width: 20px;
+            height: 30px;
+            background-color: #5aa53a;
+            position: absolute;
+            border-radius: 50% 50% 0 0;
+            transform-origin: bottom center;
+        }
+
+        .spike:nth-child(1) {
+            left: 0;
+            animation: spike-move 4s ease-in-out infinite;
+        }
+
+        .spike:nth-child(2) {
+            left: 30px;
+            animation: spike-move 4s ease-in-out infinite 0.5s;
+        }
+
+        .spike:nth-child(3) {
+            left: 60px;
+            animation: spike-move 4s ease-in-out infinite 1s;
+        }
+
+        .spike:nth-child(4) {
+            left: 90px;
+            animation: spike-move 4s ease-in-out infinite 1.5s;
+        }
+
+        @keyframes spike-move {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(10deg);
+            }
+        }
+
+        .foot {
+            width: 35px;
+            height: 15px;
+            background-color: #5aa53a;
+            position: absolute;
+            bottom: -14px;
+            border-radius: 10px 10px 0 0;
+            z-index: 0;
+        }
+
+        .foot-front {
+            left: -2px;
+        }
+
+        .foot-back {
+            left: -2px;
+        }
+
+        .finger {
+            width: 10px;
+            height: 15px;
+            background-color: #5aa53a;
+            position: absolute;
+            bottom: -15px;
+            left: 5px;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .spots {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .spot {
+            width: 20px;
+            height: 20px;
+            background-color: #5aa53a;
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        .spot:nth-child(1) {
+            top: 20px;
+            left: 30px;
+        }
+
+        .spot:nth-child(2) {
+            top: 50px;
+            left: 70px;
+        }
+
+        .spot:nth-child(3) {
+            top: 80px;
+            left: 40px;
+        }
+
+        .spot:nth-child(4) {
+            top: 40px;
+            left: 120px;
+        }
+
+        .spot:nth-child(5) {
+            top: 90px;
+            left: 100px;
+        }
+
+        /* Efecto RAWR */
+        .rawr-text {
+            position: absolute;
+            font-size: 0;
+            font-weight: bold;
+            color: #ff6600;
+            top: -140px;
+            left: 180px;
+            z-index: 10;
+            transform: rotate(10deg);
+            opacity: 0;
+            transition: all 0.2s;
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+        }
+
+        .rawr-active .rawr-text {
+            font-size: 50px;
+            opacity: 1;
+            animation: rawr-animation 1s ease-out;
+        }
+
+        @keyframes rawr-animation {
+            0% {
+                transform: scale(0.5) rotate(10deg);
+                opacity: 0;
+            }
+            20% {
+                transform: scale(1.2) rotate(10deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) rotate(10deg);
+                opacity: 0;
+            }
+        }
+
+        .rawr-active .mouth {
+            height: 35px;
+            width: 55px;
+            background-color: #ff6666;
+        }
+
+        .rawr-active .head {
+            animation: rawr-head 0.5s ease-out;
+        }
+
+        @keyframes rawr-head {
+            0% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(-15deg);
+            }
+            50% {
+                transform: rotate(15deg);
+            }
+            75% {
+                transform: rotate(-10deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .rawr-active .body {
+            animation: rawr-body 0.5s ease-out;
+        }
+
+        @keyframes rawr-body {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="scene">
+    <div class="ground"></div>
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="sun"></div>
+
+    <div class="dinosaur">
+        <div class="body">
+            <div class="spots">
+                <div class="spot"></div>
+                <div class="spot"></div>
+                <div class="spot"></div>
+                <div class="spot"></div>
+                <div class="spot"></div>
+            </div>
+        </div>
+        <div class="neck"></div>
+        <div class="head">
+            <div class="eye">
+                <div class="pupil"></div>
+            </div>
+            <div class="mouth"></div>
+            <div class="nostrils"></div>
+        </div>
+        <div class="spikes">
+            <div class="spike"></div>
+            <div class="spike"></div>
+            <div class="spike"></div>
+            <div class="spike"></div>
+        </div>
+        <div class="tail"></div>
+        <div class="leg leg-front">
+            <div class="foot foot-front"></div>
+        </div>
+        <div class="leg leg-back">
+            <div class="foot foot-back"></div>
+        </div>
+        <div class="arm"></div>
+    </div>
+</div>
+
+<script>
+    // Agregar movimiento al dinosaurio cuando se mueve el ratón
+    document.addEventListener('mousemove', (e) => {
+        const dinosaur = document.querySelector('.dinosaur');
+        const head = document.querySelector('.head');
+        const eye = document.querySelector('.pupil');
+
+        // Calcular la posición relativa del ratón
+        const mouseX = e.clientX / window.innerWidth - 0.5;
+        const mouseY = e.clientY / window.innerHeight - 0.5;
+
+        // Mover ligeramente la cabeza para seguir al ratón
+        head.style.transform = `rotate(${mouseX * 15}deg)`;
+
+        // Mover la pupila para seguir al ratón
+        eye.style.left = `${8 + mouseX * 5}px`;
+        eye.style.top = `${5 + mouseY * 5}px`;
+
+        // Inclinar ligeramente todo el dinosaurio
+        dinosaur.style.transform = `translateY(${mouseY * -10}px) rotate(${mouseX * 5}deg)`;
+    });
+</script>
+</body>
+</html>

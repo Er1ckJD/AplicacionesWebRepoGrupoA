@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flor Animada</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #e6f7ff;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    .flower-container {
+      position: relative;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .center {
+      width: 40px;
+      height: 40px;
+      background-color: #ffcc00;
+      border-radius: 50%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .petals {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .petal {
+      position: absolute;
+      width: 35px;
+      height: 45px;
+      background-color: #ff4d94;
+      border-radius: 50%;
+      z-index: 1;
+      transform-origin: 50% 95%;
+      animation: sway 3s ease-in-out infinite alternate;
+    }
+
+    .petal:nth-child(1) {
+      transform: rotate(0deg) translateY(-20px);
+      animation-delay: 0s;
+    }
+
+    .petal:nth-child(2) {
+      transform: rotate(45deg) translateY(-20px);
+      animation-delay: 0.2s;
+    }
+
+    .petal:nth-child(3) {
+      transform: rotate(90deg) translateY(-20px);
+      animation-delay: 0.4s;
+    }
+
+    .petal:nth-child(4) {
+      transform: rotate(135deg) translateY(-20px);
+      animation-delay: 0.6s;
+    }
+
+    .petal:nth-child(5) {
+      transform: rotate(180deg) translateY(-20px);
+      animation-delay: 0.8s;
+    }
+
+    .petal:nth-child(6) {
+      transform: rotate(225deg) translateY(-20px);
+      animation-delay: 1s;
+    }
+
+    .petal:nth-child(7) {
+      transform: rotate(270deg) translateY(-20px);
+      animation-delay: 1.2s;
+    }
+
+    .petal:nth-child(8) {
+      transform: rotate(315deg) translateY(-20px);
+      animation-delay: 1.4s;
+    }
+
+    .stem {
+      width: 6px;
+      height: 150px;
+      background-color: #22bb33;
+      margin: 0 auto;
+      position: relative;
+      top: -5px;
+    }
+
+    .leaf {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background-color: #22bb33;
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .leaf:nth-child(1) {
+      transform: rotate(-30deg);
+      left: -25px;
+      top: 40px;
+    }
+
+    .leaf:nth-child(2) {
+      transform: rotate(30deg);
+      right: -25px;
+      top: 80px;
+    }
+
+    @keyframes sway {
+      0% {
+        transform-origin: 50% 95%;
+      }
+      100% {
+        transform-origin: 50% 95%;
+        transform: rotate(calc(var(--rotation) + 10deg)) translateY(-20px);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="flower-container">
+  <div class="petals">
+    <div class="petal" style="--rotation: 0deg;"></div>
+    <div class="petal" style="--rotation: 45deg;"></div>
+    <div class="petal" style="--rotation: 90deg;"></div>
+    <div class="petal" style="--rotation: 135deg;"></div>
+    <div class="petal" style="--rotation: 180deg;"></div>
+    <div class="petal" style="--rotation: 225deg;"></div>
+    <div class="petal" style="--rotation: 270deg;"></div>
+    <div class="petal" style="--rotation: 315deg;"></div>
+  </div>
+  <div class="center"></div>
+  <div class="stem">
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+  </div>
+</div>
+
+<script>
+  // Agregamos movimiento adicional para los pétalos
+  const petals = document.querySelectorAll('.petal');
+
+  petals.forEach((petal, index) => {
+    // Establecer la animación con diferentes retrasos
+    petal.style.animation = `sway 3s ease-in-out infinite alternate ${index * 0.2}s`;
+
+    // Añadir movimiento al pasar el ratón
+    document.addEventListener('mousemove', (e) => {
+      const x = (window.innerWidth / 2 - e.clientX) / 50;
+      const y = (window.innerHeight / 2 - e.clientY) / 50;
+
+      const rotation = petal.style.getPropertyValue('--rotation');
+      const baseAngle = parseInt(rotation) || index * 45;
+
+      petal.style.transform = `rotate(${baseAngle + x}deg) translateY(${-20 + y}px)`;
+    });
+  });
+
+  // Hacer que la flor siga ligeramente al cursor
+  const flower = document.querySelector('.flower-container');
+
+  document.addEventListener('mousemove', (e) => {
+    const x = (e.clientX - window.innerWidth / 2) / 30;
+    const y = (e.clientY - window.innerHeight / 2) / 30;
+
+    flower.style.transform = `translate(${x}px, ${y}px)`;
+  });
+</script>
+</body>
+</html>
