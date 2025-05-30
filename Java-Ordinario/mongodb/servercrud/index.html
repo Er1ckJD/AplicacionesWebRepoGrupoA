@@ -3,14 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>formulario crud</title>
+    <link rel="stylesheet" href="index.css">
+    <title>CRUD con MongoDB</title>
 </head>
 <body>
-<h1 >
-    formulario
-</h1>
-<form action="http://localhost:3000/insertar" method="post">
-    <input type="submit" value="insertar">
-</form>
+<div class="container">
+    <h1> crud con MongoDB</h1>
+
+    <!-- Formulario para crear usuario -->
+    <form id="userForm">
+        <div class="form-group">
+            <label for="usuario">Usuario:</label>
+            <input type="text" id="usuario" name="usuario" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <button type="submit" class="btn">
+            Insertar Usuario
+            <span id="loader" class="loader" style="display: none;"></span>
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="limpiarFormulario()">Limpiar</button>
+        <button type="button" class="btn btn-secondary" onclick="obtenerUsuarios()">Obtener Usuarios</button>
+    </form>
+
+    <!-- Área de mensajes -->
+    <div id="mensaje"></div>
+
+    <!-- Lista de usuarios -->
+    <div id="listaUsuarios" class="users-list"></div>
+</div>
 </body>
 </html>
